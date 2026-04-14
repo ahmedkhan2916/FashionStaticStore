@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import FacebookIcon from "../assets/Icons/facebook.png";
+import InstagramIcon from "../assets/Icons/instagram.png";
+import XIcon from "../assets/Icons/twitter.png";  
 
 const footerColumns = [
   {
@@ -58,7 +61,7 @@ export default function Footer() {
             <div className="space-y-4 text-neutral-600">
               <p className="leading-7">
                 At SSS Clothing, we believe that what you wear should express
-                who you are. We focus on stylish and unique t-shirts that help
+                who you are. We focus on stylish and unique T-Shirts anf Shirts that help
                 you stand out.
               </p>
               <p className="leading-7">
@@ -83,22 +86,16 @@ export default function Footer() {
               href="/#"
               onClick={(event) => event.preventDefault()}
             >
-              Facebook
+              <img src={FacebookIcon} alt="Facebook" className="h-6 w-6" />
             </a>
             <a
               className="rounded-full bg-white px-4 py-3 font-bold"
               href="/#"
               onClick={(event) => event.preventDefault()}
             >
-              Instagram
+              <img src={InstagramIcon} alt="Instagram" className="h-6 w-6" />
             </a>
-            <a
-              className="rounded-full bg-white px-4 py-3 font-bold"
-              href="/#"
-              onClick={(event) => event.preventDefault()}
-            >
-              X
-            </a>
+            
           </div>
         </div>
 

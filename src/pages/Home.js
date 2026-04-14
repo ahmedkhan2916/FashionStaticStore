@@ -1,18 +1,17 @@
-import { Link } from "react-router-dom";
+
 import Footer from "../components/Footer.js";
 import Navbar from "../components/Navbar.js";
 import Green1 from "../assets/ProductImages/green1.jpeg";
 import Green2 from "../assets/ProductImages/green2.jpeg";
 import Black1 from "../assets/ProductImages/black1.jpeg";
 import Black2 from "../assets/ProductImages/black5.jpeg";
-import Deadpool from "../assets/ProductImages/deadpool.jpg";
-import Champagne from "../assets/ProductImages/champagne.jpg";
-import varsity from "../assets/ProductImages/versity4.jpg";
-import HarryPotter from "../assets/ProductImages/harrypoter.jpg";
 import Shirt1 from "../assets/ProductImages/shirt1.jpg";
 import Jeans1 from "../assets/ProductImages/jeans.jpg";
 import acc1 from "../assets/ProductImages/acc1.jpg";
 import tee1 from "../assets/ProductImages/tee5.jpg"
+
+import NewArrivals from "../components/NewArrivals.js";
+
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import reviews from "../components/reviews.js";
@@ -28,46 +27,13 @@ const featureItems = [
 
 
 
-
-
-
-const latestDrops = [
-  {
-    title: "Deadpool: The Degenerate",
-    category: "Oversized T-Shirts",
-    price: "999",
-    img: Deadpool,
-  },
-  {
-    title: "Oversized Shirt: Champagne",
-    category: "Oversized Shirts",
-    price: "1299",
-    img: Champagne,
-  },
-  {
-    title: "Varsity T-Shirt: Sangria",
-    category: "Oversized T-Shirts",
-    price: "1299",
-    img: varsity,
-  },
-  {
-    title: "Harry Potter: Slytherin",
-    category: "Oversized Polos",
-    price: "1699",
-    img: HarryPotter,
-  },
-];
-
 const categories = [
 
+    {imag: Shirt1, cat: "shirts"},
+    {imag: tee1, cat: "t-shirts"},
+    {imag: Jeans1, cat: "bottoms"},
+    {imag: acc1, cat: "accessories"},
     
-    {imag: Shirt1, title: "shirts"},
-    {imag: tee1, title: "tees"},
-    {imag: Jeans1, title: "pants"},
-    {imag: acc1, title: "accessories"},
-
-
-
 ];
 
 const curatedCollections = [
@@ -170,19 +136,13 @@ const scrollingReviews = [...reviews, ...reviews];
                 Summer Collection
               </h1>
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <Link
-                  to="/product"
+                <button
+                  onClick={()=>{ Navigate("/product/1")}}
                   className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 py-3 font-bold text-neutral-900"
                 >
                   Explore Shirts
-                </Link>
-                <a
-                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/30 px-6 py-3 font-bold text-white"
-                  href="/#"
-                  onClick={(event) => event.preventDefault()}
-                >
-                  View Lookbook
-                </a>
+                </button>
+               
               </div>
             </div>
 
@@ -239,11 +199,12 @@ const scrollingReviews = [...reviews, ...reviews];
           <SectionHeading eyebrow="Handpicked" title="New Arrivals" />
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {latestDrops.map((item) => (
+            {NewArrivals.map((item) => (
               <article
                 key={item.title}
                 className="overflow-hidden rounded-3xl bg-white shadow-[0_12px_30px_rgba(17,24,39,0.08)]"
               >
+               
                 <div className="rounded-none border-0">
                   <img src={item.img} alt={item.title} />
                 </div>
@@ -254,6 +215,15 @@ const scrollingReviews = [...reviews, ...reviews];
                     Rs. {item.price}
                   </strong>
                 </div>
+                    <button
+                 
+                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 py-3 font-bold text-neutral-900 "
+                 onClick={() => {
+                   // Handle buy now click
+                   Navigate(`/product/${item.id}`);
+                 }}>
+                  Buy Now
+                </button>
               </article>
             ))}
           </div>
@@ -265,15 +235,16 @@ const scrollingReviews = [...reviews, ...reviews];
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {categories.map((item) => (
   <article
-    key={item.title}
-    className="overflow-hidden rounded-3xl bg-white shadow"
+    key={item.cat
+    }
+    className="overflow-hidden rounded-3xl bg-white shadow cursor-pointer hover:scale-[1.02] transition"
     onClick={() =>
-      Navigate(`/products-coll/${item.title.toLowerCase().trim()}`)
+      Navigate(`/products-coll/${item.cat.toLowerCase().trim()}`)
     }
   >
     <img src={item.imag} alt={item.title} />
     <h3 className="px-5 py-5 text-3xl font-black uppercase">
-      {item.title}
+      {item.cat}
     </h3>
   </article>
 ))}

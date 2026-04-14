@@ -3,16 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer.js";
 import Navbar from "../components/Navbar.js";
 import { CartContext } from "../context/cartContext.js";
-import Green1 from "../assets/ProductImages/green1.jpeg";
-import Green2 from "../assets/ProductImages/green2.jpeg";
-import Black1 from "../assets/ProductImages/black1.jpeg";
-import Green3 from "../assets/ProductImages/green3.jpeg";
-import Black2 from "../assets/ProductImages/black2.jpeg";
-import Black3 from "../assets/ProductImages/black3.jpeg";
-import Black4 from "../assets/ProductImages/black4.jpeg";
 import reviews from "../components/reviews.js";
+import NewArrivalsImages from "../components/NewArrivalsImages.js";
+import { useParams } from "react-router-dom";
 
-const galleryImages = [Black1, Black2, Black3, Black4];
+
 
 
 
@@ -29,6 +24,18 @@ function ReviewStars() {
 }
 
 export default function Product() {
+
+       const { id } = useParams();
+       const selectedProduct = NewArrivalsImages.find(
+  (item) => item.id === Number(id)
+  );
+
+       const galleryImages = Array.isArray(selectedProduct?.img)
+  ? selectedProduct.img
+  : [selectedProduct?.img];
+
+
+
   const { addToCart, startDirectCheckout } = useContext(CartContext);
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(galleryImages[0]);
@@ -37,6 +44,9 @@ export default function Product() {
   const [reviewCardWidth, setReviewCardWidth] = useState(320);
   const animationFrameRef = useRef(null);
   const sizes = ["M", "L", "XL"];
+   
+
+
 
   const baseProduct = {
     name: "Summer Collection Black Tee",
@@ -47,7 +57,7 @@ export default function Product() {
   };
 
   const product = {
-    ...baseProduct,
+    ...selectedProduct,
     size: selectedSize,
   };
 
@@ -156,7 +166,7 @@ export default function Product() {
             </p>
 
             <h1 className="mt-3 text-3xl font-black text-slate-900 sm:text-4xl">
-              {product.name}
+              {product.title}
             </h1>
 
             <div className="mt-4 flex items-center gap-3">
@@ -220,6 +230,8 @@ export default function Product() {
             </div>
           </div>
         </section>
+
+
 
         <section className="mt-14 rounded-[2rem] bg-white px-6 py-10 shadow-sm sm:px-8">
           <div className="text-center">

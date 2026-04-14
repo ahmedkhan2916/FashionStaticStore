@@ -7,7 +7,7 @@ export const CartProvider = ({ children }) => {
   const [checkoutItems, setCheckoutItems] = useState([]);
 
   const addToCart = (product) => {
-    setCart((currentCart) => [...currentCart, product]);
+    setCart((currentCart) => [...currentCart,product]);
   };
 
   const removeFromCart = (itemIndex) => {

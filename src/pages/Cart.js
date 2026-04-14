@@ -8,7 +8,10 @@ export default function Cart() {
   const { cart, removeFromCart, startCartCheckout } = useContext(CartContext);
   const navigate = useNavigate();
 
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
+ const total = cart.reduce(
+  (sum, item) => sum + Number(item.price),
+  0
+);
 
   const handleProceedToPayment = () => {
     startCartCheckout();

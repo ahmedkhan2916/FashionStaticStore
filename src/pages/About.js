@@ -19,7 +19,7 @@ export default function About() {
           <div className="mt-6 space-y-5 text-base leading-8 text-neutral-600">
             <p>
               At SSS Clothing, we believe that what you wear should express who
-              you are. That is why we focus on stylish and unique t-shirts that
+              you are. That is why we focus on stylish and unique t-shirts and Shirts that
               help you stand out.
             </p>
 
