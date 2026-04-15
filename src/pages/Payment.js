@@ -2,6 +2,7 @@ import { useContext, useMemo, useState } from "react";
 import Footer from "../components/Footer.js";
 import Navbar from "../components/Navbar.js";
 import { CartContext } from "../context/cartContext.js";
+import QR from "../assets/Icons/QR.jpeg";
 
 export default function Payment() {
   const { checkoutItems } = useContext(CartContext);
@@ -128,7 +129,7 @@ export default function Payment() {
               </h2>
 
               <img
-                src="https://via.placeholder.com/200"
+                src={QR}
                 alt="QR"
                 className="mx-auto mt-5 rounded-xl"
               />
