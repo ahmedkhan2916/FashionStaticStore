@@ -9,14 +9,14 @@ import Shirt1 from "../assets/ProductImages/shirt1.jpg";
 import Jeans1 from "../assets/ProductImages/jeans.jpg";
 import acc1 from "../assets/ProductImages/acc1.jpg";
 import tee1 from "../assets/ProductImages/tee5.jpg"
-
 import NewArrivals from "../components/NewArrivals.js";
-
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import {  useEffect,useRef, useState } from "react";
 import reviews from "../components/reviews.js";
-// import varsity2 from "../assets/ProductImages/versity.jpg";
 
+
+
+// Features Items Array
 const featureItems = [
   { title: "10% Cashback", text: "on app orders" },
   { title: "30 Days Returns", text: "easy exchanges" },
@@ -26,7 +26,7 @@ const featureItems = [
 
 
 
-
+//To Show Categories We Have Created An Array Of Objects With Image And Category Name
 const categories = [
 
     {imag: Shirt1, cat: "shirts"},
@@ -36,12 +36,14 @@ const categories = [
     
 ];
 
+// Curated Collections Array
 const curatedCollections = [
   "Old Money",
   "Korean Collection",
   "Office Edit",
 ];
 
+// Placeholder Media Component
 function PlaceholderMedia({ label, tall = false, dark = false, short = false }) {
   const heightClass = tall ? "min-h-[18rem] lg:min-h-[36rem]" : short ? "min-h-[18rem]" : "min-h-[24rem]";
   const darkClass = dark
@@ -57,6 +59,7 @@ function PlaceholderMedia({ label, tall = false, dark = false, short = false }) 
   );
 }
 
+// Section Heading Component
 function SectionHeading({ eyebrow, title }) {
   return (
     <div className="mb-6 text-center">
@@ -88,7 +91,7 @@ const reviewCycleWidth = reviewStep * reviews.length;
 const scrollingReviews = [...reviews, ...reviews];
 
 
-
+// Update review card width on window resize
     useEffect(() => {
   const animate = () => {
     setReviewOffset((prev) => {
