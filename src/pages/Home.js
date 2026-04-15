@@ -186,7 +186,7 @@ const scrollingReviews = [...reviews, ...reviews];
                 Signature Collection
               </h3>
               <span className="mt-4 text-white/70">
-                Use this wide block for your featured campaign image
+                We collaborated with top designers to bring you exclusive styles that define your unique fashion statement.
               </span>
             </div>
              <div className="rounded-none border-0">
