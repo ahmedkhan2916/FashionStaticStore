@@ -35,7 +35,7 @@ export default function Contact() {
             <div>
               <h2 className="text-xl font-bold text-slate-900">Phone Support</h2>
               <p className="mt-2 text-base font-semibold text-slate-900">
-                Customer Care: +91-
+                Customer Care: +91-8506926037
               </p>
               <p className="text-base leading-8">
                 Monday to Saturday, 10:00 AM - 6:00 PM
