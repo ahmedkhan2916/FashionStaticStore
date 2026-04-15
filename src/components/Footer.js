@@ -6,17 +6,32 @@ import XIcon from "../assets/Icons/twitter.png";
 const footerColumns = [
   {
     heading: "Need Help",
-    links: ["Contact Us", "Track Order", "Returns & Refunds", "FAQs", "My Account"],
+    links: [
+      { name: "Contact Us", path: "/contact" },
+      { name: "Track Order", path: "#" },
+      { name: "Returns & Refunds", path: "/refund" },
+      
+      
+    ],
   },
   {
     heading: "Company",
-    links: ["About Us", "Investor Relation", "Careers", "Gift Vouchers", "Community Initiatives"],
+    links: [
+      { name: "About Us", path: "/about" },
+      { name: "Gift Vouchers", path: "#" },
+    ,
+    ],
   },
   {
     heading: "More Info",
-    links: ["T&C", "Privacy Policy", "Sitemap", "Get Notified", "Blogs"],
+    links: [
+      { name: "T&C", path: "/terms" },
+      { name: "Privacy Policy", path: "/privacy" },
+      { name: "Sitemap", path: "#" },
+      { name: "Get Notified", path: "#" },
+     ,
+    ],
   },
-
 ];
 
 export default function Footer() {
@@ -30,26 +45,24 @@ export default function Footer() {
                 {column.heading}
               </h3>
               <div className="space-y-4">
-                {column.links.map((link) => (
-                  link === "T&C" ? (
-                    <Link
-                      key={link}
-                      className="block font-semibold text-neutral-600"
-                      to="/terms"
-                    >
-                      {link}
-                    </Link>
-                  ) : (
-                    <a
-                      key={link}
-                      className="block font-semibold text-neutral-600"
-                      href="/#"
-                      onClick={(event) => event.preventDefault()}
-                    >
-                      {link}
-                    </a>
-                  )
-                ))}
+            {column.links.map((link) =>
+  link.path !== "#" ? (
+    <Link
+      key={link.name}
+      to={link.path}
+      className="block font-semibold text-neutral-600 hover:text-black"
+    >
+      {link.name}
+    </Link>
+  ) : (
+    <span
+      key={link.name}
+      className="block font-semibold text-neutral-400 cursor-not-allowed"
+    >
+      {link.name}
+    </span>
+  )
+)}
               </div>
             </div>
           ))}

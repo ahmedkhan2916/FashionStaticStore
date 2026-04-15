@@ -49,15 +49,13 @@ export default function PrivacyPolicy() {
       <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
         <section className="rounded-[2rem] bg-white p-6 shadow-sm sm:p-10">
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-red-500">
-            Legal
+           PRIVACY POlICY
           </p>
           <h1 className="mt-4 text-3xl font-black uppercase text-slate-900 sm:text-4xl">
-            Terms and Conditions
+            Privacy Policy - SSS Clothing
           </h1>
           <p className="mt-6 text-base leading-8 text-neutral-600">
-            These Terms and Conditions govern the use of this ecommerce fashion
-            platform and apply to all visitors, users, and customers who access
-            or purchase from the website.
+           This Privacy Policy explains how we collect, use, and protect your personal information when you use our website.
           </p>
 
           <div className="mt-10 space-y-8">
