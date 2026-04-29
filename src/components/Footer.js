@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import FacebookIcon from "../assets/Icons/facebook.png";
 import InstagramIcon from "../assets/Icons/instagram.png";
 import XIcon from "../assets/Icons/twitter.png";  
+import shippingPolicy from "../pages/shippingPolicy.js";
 
 const footerColumns = [
   {
@@ -10,7 +11,7 @@ const footerColumns = [
       { name: "Contact Us", path: "/contact" },
       { name: "Track Order", path: "#" },
       { name: "Returns & Refunds", path: "/refund" },
-      
+      { name: "Shipping Policy", path: "/shippingpolicy" },
       
     ],
   },
@@ -18,7 +19,7 @@ const footerColumns = [
     heading: "Company",
     links: [
       { name: "About Us", path: "/about" },
-      { name: "Gift Vouchers", path: "#" },
+     
     ,
     ],
   },

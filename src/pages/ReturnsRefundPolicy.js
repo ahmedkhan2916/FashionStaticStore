@@ -8,7 +8,7 @@ const sections = [
   },
   {
     title: "Return Eligibility",
-    text: "We accept returns only if you receive a damaged, defective, or incorrect product. To be eligible, the item must be unused, in original condition, and returned with original packaging within 3 days of delivery.",
+    text: "We accept returns only if you receive a damaged, defective, or incorrect product. To be eligible, the item must be unused, in original condition, and returned with original packaging within 30 days of delivery.",
   },
   {
     title: "Refund Policy",

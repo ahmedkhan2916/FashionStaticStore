@@ -10,6 +10,7 @@ import Terms from "./pages/Terms.js";
 import PrivacyPolicy from "./pages/PrivacyPolicy.js";
 import RefundPolicy from "./pages/ReturnsRefundPolicy.js";
 import ProductsCollectionPage from "./pages/productsCollectionPage.js";
+import ShippingPolicy from "./pages/shippingPolicy.js";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/refund" element={<RefundPolicy />} />
         <Route path="/products-coll/:collection" element={<ProductsCollectionPage/>} />
+        <Route path="/shippingpolicy" element={<ShippingPolicy />} />
       </Routes>
     </CartProvider>
   );
