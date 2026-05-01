@@ -13,12 +13,12 @@ export default function About() {
           </p>
 
           <h1 className="mt-4 text-3xl font-black uppercase text-slate-900 sm:text-4xl">
-            Welcome To SSS Clothing
+            Welcome To SS Enterprises
           </h1>
 
           <div className="mt-6 space-y-5 text-base leading-8 text-neutral-600">
             <p>
-              At SSS Clothing, we believe that what you wear should express who
+              At SS Enterprises, we believe that what you wear should express who
               you are. That is why we focus on stylish and unique t-shirts and Shirts that
               help you stand out.
             </p>
@@ -38,7 +38,7 @@ export default function About() {
             </p>
 
             <p>
-              Thank you for choosing SSS Clothing. We are happy to be part of
+              Thank you for choosing SS Enterprises. We are happy to be part of
               your style journey.
             </p>
           </div>

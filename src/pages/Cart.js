@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer.js";
 import Navbar from "../components/Navbar.js";
 import { CartContext } from "../context/cartContext.js";
+import { groupCartItems } from "../utils/cartUtils.js";
 
 export default function Cart() {
-  const { cart, removeFromCart, startCartCheckout } = useContext(CartContext);
+  const { cart, removeCartGroup, startCartCheckout } = useContext(CartContext);
   const navigate = useNavigate();
+  const groupedCart = groupCartItems(cart);
 
- const total = cart.reduce(
-  (sum, item) => sum + Number(item.price),
+ const total = groupedCart.reduce(
+  (sum, item) => sum + Number(item.totalPrice),
   0
 );
 
@@ -40,14 +42,17 @@ export default function Cart() {
           ) : (
             <>
               <div className="mt-8 space-y-4">
-                {cart.map((item, index) => (
+                {groupedCart.map((item) => (
                   <div
-                    key={`${item.name}-${index}`}
+                    key={item.key}
                     className="flex flex-col gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 px-5 py-4 sm:flex-row sm:items-center sm:justify-between"
                   >
                     <div className="flex items-center justify-between gap-4 sm:flex-1">
                       <div>
-                        <h2 className="text-lg font-bold text-slate-900">{item.name}</h2>
+                        <h2 className="text-lg font-bold text-slate-900">
+                          {item.name}
+                          {item.quantity > 1 ? ` (x${item.quantity})` : ""}
+                        </h2>
                         <p className="text-sm text-neutral-500">
                           {item.category || "Product"}
                         </p>
@@ -56,12 +61,12 @@ export default function Cart() {
                         ) : null}
                       </div>
                       <p className="text-lg font-bold text-slate-900">
-                        Rs. {item.price}
+                        Rs. {item.totalPrice}
                       </p>
                     </div>
                     <button
                       type="button"
-                      onClick={() => removeFromCart(index)}
+                      onClick={() => removeCartGroup(item)}
                       className="inline-flex min-h-10 items-center justify-center rounded-full border border-red-200 px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-red-500 transition hover:bg-red-50"
                     >
                       Delete

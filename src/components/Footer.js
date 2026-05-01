@@ -70,11 +70,11 @@ export default function Footer() {
 
           <div className="xl:pl-6">
             <h3 className="mb-5 text-3xl font-black uppercase text-red-500">
-              About SSS Clothing
+              About SS Enterprises
             </h3>
             <div className="space-y-4 text-neutral-600">
               <p className="leading-7">
-                At SSS Clothing, we believe that what you wear should express
+                At SS Enterprises, we believe that what you wear should express
                 who you are. We focus on stylish and unique T-Shirts anf Shirts that help
                 you stand out.
               </p>

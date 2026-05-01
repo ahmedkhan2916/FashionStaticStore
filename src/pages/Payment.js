@@ -3,6 +3,7 @@ import Footer from "../components/Footer.js";
 import Navbar from "../components/Navbar.js";
 import { CartContext } from "../context/cartContext.js";
 import QR from "../assets/Icons/QR.jpeg";
+import { groupCartItems } from "../utils/cartUtils.js";
 
 export default function Payment() {
   const { checkoutItems } = useContext(CartContext);
@@ -19,9 +20,13 @@ export default function Payment() {
   });
 
   const orderItems = useMemo(() => checkoutItems || [], [checkoutItems]);
+  const groupedOrderItems = useMemo(
+    () => groupCartItems(orderItems),
+    [orderItems]
+  );
 
-  const total = orderItems.reduce(
-    (sum, item) => sum + Number(item.price),
+  const total = groupedOrderItems.reduce(
+    (sum, item) => sum + Number(item.totalPrice),
     0
   );
 
@@ -159,23 +164,31 @@ export default function Payment() {
             ) : (
               <>
                 <div className="mt-6 space-y-4">
-                  {orderItems.map((item, index) => (
+                  {groupedOrderItems.map((item) => (
                     <div
-                      key={`${item.id}-${index}`}
+                      key={item.key}
                       className="flex justify-between bg-neutral-50 p-4 rounded-xl"
                     >
                       <div>
-                        <h3 className="font-bold">{item.name || item.title}</h3>
+                        <h3 className="font-bold">
+                          {item.name}
+                          {item.quantity > 1 ? ` (x${item.quantity})` : ""}
+                        </h3>
                         <p className="text-sm text-neutral-500">
                           {item.category}
                         </p>
                       </div>
-                      <p className="font-bold">Rs. {item.price}</p>
+                      <p className="font-bold">Rs. {item.totalPrice}</p>
                     </div>
                   ))}
                 </div>
 
-     <div className="mt-6 border-t pt-4 flex justify-between font-bold text-xl">
+                <div className="mt-6 border-t pt-4 flex justify-between font-bold text-xl">
+                  <span>Total Items</span>
+                  <span>{orderItems.length}</span>
+                </div>
+
+                <div className="mt-6 border-t pt-4 flex justify-between font-bold text-xl">
                   <span>Delivery Charges</span>
                   <span>Rs.50</span>
                 </div>

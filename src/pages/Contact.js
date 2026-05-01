@@ -45,9 +45,16 @@ export default function Contact() {
             <div>
               <h2 className="text-xl font-bold text-slate-900">Address</h2>
               <p className="mt-2 text-base leading-8">
-                SSS Clothing
+                SS Enterprises
                 <br />
-                D567 BHAGIRATHI VIHAR mustafabad delhi 110094
+               <span className="font-bold">Address Line 1:</span> C-14, KH No. 19, G/F
+ <br/><span className="font-bold">Address Line 2:</span> Gali No. 11, Bhagirathi Vihar
+Landmark: Near MCD School
+City: New Delhi
+District: North East Delhi
+State: Delhi
+PIN Code: 110094
+Country: India
                 <br />
                 India
               </p>

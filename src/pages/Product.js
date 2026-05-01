@@ -25,14 +25,18 @@ function ReviewStars() {
 
 export default function Product() {
 
-       const { id } = useParams();
-       const selectedProduct = NewArrivalsImages.find(
-  (item) => item.id === Number(id)
+  const { id } = useParams();
+  const selectedProduct = NewArrivalsImages.find(
+    (item) => item.id === Number(id)
   );
 
-       const galleryImages = Array.isArray(selectedProduct?.img)
-  ? selectedProduct.img
-  : [selectedProduct?.img];
+  const galleryImages = useMemo(
+    () =>
+      Array.isArray(selectedProduct?.img)
+        ? selectedProduct.img
+        : [selectedProduct?.img],
+    [selectedProduct]
+  );
 
 
 
@@ -40,6 +44,7 @@ export default function Product() {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(galleryImages[0]);
   const [selectedSize, setSelectedSize] = useState("M");
+  const [quantity, setQuantity] = useState(1);
   const [reviewOffset, setReviewOffset] = useState(0);
   const [reviewCardWidth, setReviewCardWidth] = useState(320);
   const animationFrameRef = useRef(null);
@@ -57,9 +62,13 @@ export default function Product() {
   };
 
   const product = {
+    ...baseProduct,
     ...selectedProduct,
+    name: selectedProduct?.title || baseProduct.name,
     size: selectedSize,
   };
+
+  const productTotal = Number(product.price) * quantity;
 
   const reviewGap = 20;
   const reviewStep = reviewCardWidth + reviewGap;
@@ -67,12 +76,20 @@ export default function Product() {
   const scrollingReviews = useMemo(() => [...reviews, ...reviews], []);
 
   const handleAddToCart = () => {
-    addToCart(product);
+    addToCart(product, quantity);
   };
 
   const handleBuyNow = () => {
-    startDirectCheckout(product);
+    startDirectCheckout(product, quantity);
     navigate("/pay");
+  };
+
+  const decreaseQuantity = () => {
+    setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1));
+  };
+
+  const increaseQuantity = () => {
+    setQuantity((currentQuantity) => currentQuantity + 1);
   };
 
   const showPreviousReviews = () => {
@@ -88,6 +105,10 @@ export default function Product() {
       return nextOffset >= reviewCycleWidth ? 0 : nextOffset;
     });
   };
+
+  useEffect(() => {
+    setSelectedImage(galleryImages[0]);
+  }, [galleryImages]);
 
   useEffect(() => {
     const updateReviewCardWidth = () => {
@@ -199,6 +220,36 @@ export default function Product() {
                     {size}
                   </button>
                 ))}
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <h2 className="text-lg font-bold text-slate-900">Select Quantity</h2>
+              <div className="mt-4 flex flex-wrap items-center gap-4">
+                <div className="inline-flex items-center overflow-hidden rounded-full border border-neutral-300 bg-white">
+                  <button
+                    type="button"
+                    onClick={decreaseQuantity}
+                    className="h-12 w-12 text-xl font-bold text-slate-900 transition hover:bg-neutral-100"
+                    aria-label="Decrease quantity"
+                  >
+                    -
+                  </button>
+                  <span className="min-w-12 text-center text-lg font-black text-slate-900">
+                    {quantity}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={increaseQuantity}
+                    className="h-12 w-12 text-xl font-bold text-slate-900 transition hover:bg-neutral-100"
+                    aria-label="Increase quantity"
+                  >
+                    +
+                  </button>
+                </div>
+                <p className="text-sm font-semibold text-neutral-500">
+                  Item total: Rs. {productTotal}
+                </p>
               </div>
             </div>
 
