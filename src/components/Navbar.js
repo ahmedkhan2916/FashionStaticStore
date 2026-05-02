@@ -71,6 +71,7 @@ export default function Navbar() {
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-semibold text-neutral-500 sm:text-base">
+              <Link to="/">Home</Link>
               <Link to="/about">About</Link>
               <Link to="/contact">Contact</Link>
               <Link to="/cart">

@@ -2,25 +2,19 @@ import { useParams } from "react-router-dom";
 import {products} from "../components/productscollection.js";
 import Navbar from "../components/Navbar.js";
 import Footer from "../components/Footer.js";
-import NewArrivals from "../components/NewArrivals.js";
-import NewArrivalsImages from "../components/NewArrivalsImages.js";
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../context/cartContext.js";
 export default function ProductsCollectionPage() {
 
   const { collection } = useParams();
+  const sizes = ["M", "L", "XL"];
+  const [selectedSizes, setSelectedSizes] = useState({});
 
 const galleryImages = products.filter(
   (item) => item.category.toLowerCase() === collection.toLowerCase()
 );
 
-  
-
-  const filteredProducts = NewArrivalsImages.filter(
-    (pro) => pro.category.toLowerCase() === collection.toLowerCase()
-  );
-
-    const { addToCart, startDirectCheckout } = useContext(CartContext);
+    const { addToCart } = useContext(CartContext);
 
 //  console.log("here is my gallery Images",galleryImages,selectedProduct,products);
 
@@ -28,9 +22,21 @@ const galleryImages = products.filter(
 
 
 
-// const handleAddToCart = () => {
-//   addToCart(product);
-// };
+const handleSizeSelect = (productId, size) => {
+  setSelectedSizes((currentSizes) => ({
+    ...currentSizes,
+    [productId]: size,
+  }));
+};
+
+const handleAddToCart = (product) => {
+  const productSizeKey = `${product.id}-${product.name}`;
+
+  addToCart({
+    ...product,
+    size: selectedSizes[productSizeKey] || sizes[0],
+  });
+};
 
   return (
 
@@ -45,7 +51,7 @@ const galleryImages = products.filter(
   <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
     {galleryImages.map((product) => (
       <article
-        key={product.id}
+        key={`${product.id}-${product.name}`}
         className="overflow-hidden rounded-3xl bg-white shadow-[0_12px_30px_rgba(17,24,39,0.08)] hover:scale-[1.02] transition"
       >
         {/* IMAGE */}
@@ -69,11 +75,36 @@ const galleryImages = products.filter(
             ₹{product.price}
           </strong>
 
+          <div className="mt-4">
+            <p className="text-sm font-bold text-slate-900">Select Size</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {sizes.map((size) => {
+                const productSizeKey = `${product.id}-${product.name}`;
+                const selectedSize = selectedSizes[productSizeKey] || sizes[0];
+
+                return (
+                  <button
+                    key={size}
+                    type="button"
+                    onClick={() => handleSizeSelect(productSizeKey, size)}
+                    className={`inline-flex h-10 min-w-10 items-center justify-center rounded-full border px-4 text-xs font-bold uppercase tracking-[0.12em] transition ${
+                      selectedSize === size
+                        ? "border-red-500 bg-red-500 text-white"
+                        : "border-neutral-300 bg-white text-slate-900 hover:border-slate-900"
+                    }`}
+                  >
+                    {size}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
           {/* BUTTON */}
             <button
                 type="button"
-                onClick={() => addToCart(product)}
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-900 px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-slate-900 transition hover:bg-slate-900 hover:text-white"
+                onClick={() => handleAddToCart(product)}
+                className="mt-5 inline-flex min-h-12 items-center justify-center rounded-full border border-slate-900 px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-slate-900 transition hover:bg-slate-900 hover:text-white"
               >
                 Add To Cart
               </button>

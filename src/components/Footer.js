@@ -9,7 +9,7 @@ const footerColumns = [
     heading: "Need Help",
     links: [
       { name: "Contact Us", path: "/contact" },
-      { name: "Track Order", path: "#" },
+      // { name: "Track Order", path: "#" },
       { name: "Returns & Refunds", path: "/refund" },
       { name: "Shipping Policy", path: "/shippingpolicy" },
       
@@ -28,8 +28,8 @@ const footerColumns = [
     links: [
       { name: "T&C", path: "/terms" },
       { name: "Privacy Policy", path: "/privacy" },
-      { name: "Sitemap", path: "#" },
-      { name: "Get Notified", path: "#" },
+      // { name: "Sitemap", path: "#" },
+      // { name: "Get Notified", path: "#" },
      ,
     ],
   },

@@ -177,6 +177,11 @@ export default function Payment() {
                         <p className="text-sm text-neutral-500">
                           {item.category}
                         </p>
+                        {item.size ? (
+                          <p className="text-sm font-semibold text-neutral-600">
+                            Size: {item.size}
+                          </p>
+                        ) : null}
                       </div>
                       <p className="font-bold">Rs. {item.totalPrice}</p>
                     </div>
